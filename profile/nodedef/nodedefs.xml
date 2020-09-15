@@ -1,0 +1,23 @@
+<nodeDefs>
+    <!-- NODE DEF from 5.0 document http://wiki.universal-devices.com/index.php?title=V50_MAIN -->
+    <!-- controller, this must mach the id in your Controller class-->
+    <nodeDef id="controller" >
+        <editors />
+        <sts>
+           <st id="GPV" editor="bool" hide="T" />
+           <st id="CC" editor="CC1" />
+           <st id="GV1" editor="WATT" />
+           <st id="TPW" editor="KWH" />
+           <st id="GV2" editor="KWH" />
+           <st id="GV3" editor="KWH" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+              <cmd id="QUERY" />
+              <cmd id="DISCOVER" />
+              <cmd id="UPDATE_PROFILE" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+</nodeDefs>    

@@ -1,0 +1,23 @@
+{
+    "name": "AMI-NEM_Meter",
+    "docs": "https://github.com/sjpbailey/udi-poly-ami-nem",
+    "type": "python3",
+    "executable": "ami-nem-poly.py",
+    "install": "install.sh",
+    "description": "Net Energy Utility Meter Smart Meter",
+    "notice": "",
+    "shortPoll": "240",
+    "longPoll": "86400",
+    "testMode": false,
+    "profile_version": "1.0.0",
+    "credits": [
+        {
+            "title": "AMI-NEM: AMI-NEM Meter",
+            "author": "SJBailey",
+            "version": "1.1.3",
+            "date": "December 16, 2019",
+            "source": "https://github.com/sjpbailey/udi-poly-ami-nem",
+            "license": "https://github.com/sjpbailey/udi-poly-ami-nem/blob/master/LICENSE"
+        }
+    ]
+}

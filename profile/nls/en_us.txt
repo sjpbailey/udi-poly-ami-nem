@@ -1,0 +1,14 @@
+# controller
+ND-controller-NAME = AMI-NEM Meter
+ND-controller-ICON = Electricity
+CMD-QUERY"-NAME = Query
+CMD-DISCOVER-NAME = Re-Discover
+CMD-UPDATE_PROFILE-NAME = Update Profile
+CMD-REMOVE_NOTICES_ALL-NAME = Remove All Notices
+CMD-REMOVE_NOTICE_TEST-NAME = Remove Notice Test
+ST-GPV-NAME = Online
+ST-CC-NAME = Instaneous Demand kW
+ST-TPW-NAME = Kilo Watt Hours Delivered Today
+ST-GV2-NAME = Kilo Watt Hours Delivered Previous Day
+ST-GV1-NAME = Instaneous Demand Watts
+ST-GV3-NAME = Kilo Watt Hours Delivered Sum Total
