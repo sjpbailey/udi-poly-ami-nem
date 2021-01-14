@@ -11,6 +11,9 @@
     </editor>
     <editor id="KWH">
         <range uom="33" prec="1" />
+        </editor>
+    <editor id="RAWVAL">
+        <range uom="56" min="0" max="10000" prec="0" />
     </editor>
 </editors>
 

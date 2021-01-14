@@ -23,11 +23,11 @@ Adds your Smart Meter in the Administrative Console instead of just in the Event
 
 * Default Short Poll:  Every 5 minutes
 * Default Long Poll: Every 10 minutes (heartbeat)
-* user: default_user
-* password: default_password
-* isy_ip: 127.0.0.1
+* Your ISY user: default_user
+* Your ISY password: default_password
+* Your ISY isy_ip: 127.0.0.1
 
 ##### User Provided
 
-* Enter your admin user name, password and IP address to the ISY controller
+* Enter your admin user name, password and IP address for the ISY controller
 * Save and restart the NodeServer

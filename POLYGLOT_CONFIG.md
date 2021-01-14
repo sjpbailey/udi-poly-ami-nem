@@ -22,5 +22,5 @@ Adds your Smart Meter in the Administrative Console instead of just in the Event
 
 #### User Provided
 
-* Enter your admin user name, password and IP address to the ISY controller
+* Enter your admin user name, password and IP address for the ISY controller
 * Save and restart the NodeServer
