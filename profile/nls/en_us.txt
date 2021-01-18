@@ -1,7 +1,7 @@
 # controller
 ND-controller-NAME = AMI-NEM Meter
 ND-controller-ICON = Electricity
-CMD-ctl-QUERY"-NAME = Query
+CMD-ctl-QUERY-NAME = Query
 CMD-ctl-DISCOVER-NAME = Re-Discover
 CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
 CMD-ctl-REMOVE_NOTICES_ALL-NAME = Remove All Notices
