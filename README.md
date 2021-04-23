@@ -3,9 +3,9 @@
 
 ![NetEnergyMeter](https://github.com/sjpbailey/udi-poly-ami-nem/blob/master/AMI_NEM_Poly_2.png)
 
-## Added Watts for Instaneous Demand
+## Added Watts and a Divisor for Different meter types for Instaneous Demand
 
-![WattADDED](https://github.com/sjpbailey/udi-poly-ami-nem/blob/master/Update_Add_Watts.png)
+![WattADDED](/Users/stevenbailey/UDI Development/Nodeservers/udi-poly-ami-nem/update-add-watts-divisor-different-meter-types.png)
 
 The purpose of this Simple Nodeserver is to display/report, nodes for AMI Net Energy Meter within the ISY as AMI-NEM Meter.
 Adds your Smart Meter in the Administrative Console instead of just in the Event Viewer.
