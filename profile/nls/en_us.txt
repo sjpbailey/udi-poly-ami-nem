@@ -6,6 +6,7 @@ CMD-ctl-DISCOVER-NAME = Re-Discover
 CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
 CMD-ctl-REMOVE_NOTICES_ALL-NAME = Remove All Notices
 CMD-ctl-REMOVE_NOTICE_TEST-NAME = Remove Notice Test
+CMD-ctl-COVT-NAME = Divisor
 ST-ctl-GPV-NAME = Online
 ST-ctl-CC-NAME = Instaneous Demand kW
 ST-ctl-GV21-NAME = -

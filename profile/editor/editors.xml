@@ -9,11 +9,11 @@
     </editor>
     
     <editor id="WATT">
-        <range uom="73" prec="1" />
+        <range uom="73" min="-100000" max="100000" prec="1" />
     </editor>
     
     <editor id="KWH">
-        <range uom="33" prec="1" />
+        <range uom="33" min="-100000" max="100000" prec="1" />
         </editor>
     
     <editor id="RAWVAL">
