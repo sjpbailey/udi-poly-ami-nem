@@ -112,17 +112,6 @@ class Controller(polyinterface.Controller):
         else:
             LOGGER.info("ISY IP is not configured")
 
-    def setPerkW(self, command):
-        cov_one = 'covt'
-        covt = int(command.get('value'))
-        def set_covt(self, command):
-            covt = (command.get('value'))
-        if covt < 100 or covt > 10000:
-            LOGGER.error('Invalid Setpoint {}'.format(covt))
-        else:
-            self.setDriver('GV12', covt)
-            LOGGER.info('Divisor = ' + str(covt) +  '  Divisor') 
-
     def delete(self):
         LOGGER.info('Removing AMI-NEM Meter')
 
@@ -207,7 +196,6 @@ class Controller(polyinterface.Controller):
 
     id = 'controller'
     commands = {
-        'COVT': setPerkW,
         'QUERY': query,
         'DISCOVER': discover,
         'UPDATE_PROFILE': update_profile,
