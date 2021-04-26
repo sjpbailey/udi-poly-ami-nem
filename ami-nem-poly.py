@@ -122,6 +122,11 @@ class Controller(polyinterface.Controller):
         else:
             self.setDriver('GV12', covt)
             LOGGER.info('Divisor = ' + str(covt) +  '  Divisor') 
+        if covt is not None:
+            covt_root = ET.formatstring(covt)
+            for sums in covt_root.iter('covtSum'):
+                covt_sum = float(sum.int)/100
+            LOGGER.info(covt_sum)        
 
     def delete(self):
         LOGGER.info('Removing AMI-NEM Meter')
