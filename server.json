@@ -4,17 +4,17 @@
     "type": "python3",
     "executable": "ami-nem-poly.py",
     "install": "install.sh",
-    "description": "Net Energy Utility Meter Smart Meter",
+    "description": "Net Energy Utility Meter Smart Meter Landis+Gyr",
     "notice": "",
     "shortPoll": "240",
     "longPoll": "86400",
     "testMode": false,
-    "profile_version": "1.0.7",
+    "profile_version": "1.0.8",
     "credits": [
         {
             "title": "AMI-NEM: AMI-NEM Meter",
             "author": "SJBailey",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "date": "December 16, 2019",
             "source": "https://github.com/sjpbailey/udi-poly-ami-nem",
             "license": "https://github.com/sjpbailey/udi-poly-ami-nem/blob/master/LICENSE"

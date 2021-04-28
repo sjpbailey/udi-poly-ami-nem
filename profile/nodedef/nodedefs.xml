@@ -24,9 +24,6 @@
               <cmd id="QUERY" />
               <cmd id="DISCOVER" />
               <cmd id="UPDATE_PROFILE" />
-              <cmd id="COVT" >
-              <p id="" editor="covt" init="GV12"/>
-            </cmd>
             </accepts>
         </cmds>
     </nodeDef>

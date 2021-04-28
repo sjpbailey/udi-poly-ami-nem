@@ -3,9 +3,9 @@
 
 ![NetEnergyMeter](https://github.com/sjpbailey/udi-poly-ami-nem/blob/master/AMI_NEM_Poly_2.png)
 
-## Added Watts and a Divisor for Different meter types for Instaneous Demand
+## Added Watts for Instaneous Demand
 
-![WattADDED](https://github.com/sjpbailey/udi-poly-ami-nem/blob/7421ac0f8067cc52c49476789c7622ae157834d4/update-add-watts-divisor-different-meter-types.png)
+![WattADDED](https://github.com/sjpbailey/udi-poly-ami-nem/blob/master/Update_Add_Watts.png)
 
 The purpose of this Simple Nodeserver is to display/report, nodes for AMI Net Energy Meter within the ISY as AMI-NEM Meter.
 Adds your Smart Meter in the Administrative Console instead of just in the Event Viewer.
@@ -26,6 +26,7 @@ Adds your Smart Meter in the Administrative Console instead of just in the Event
 * Your ISY user: default_user
 * Your ISY password: default_password
 * Your ISY isy_ip: 127.0.0.1
+* Your ISY nem_oncor: input 1000 for Landis+Gyr, 10000 for Oncor Meters
 
 ##### User Provided
 

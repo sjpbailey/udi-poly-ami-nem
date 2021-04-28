@@ -17,6 +17,7 @@ class Controller(polyinterface.Controller):
         self.user = None
         self.password = None
         self.isy_ip = None
+        self.nem_oncor = None
         self.debug_enable = 'True'
         self.poly.onConfig(self.process_config)
 
@@ -50,8 +51,7 @@ class Controller(polyinterface.Controller):
 
         except requests.exceptions.RequestException as e:
             LOGGER.error("Error: " + str(e))
-
-        
+      
     def discover(self, *args, **kwargs):
         if self.isy_ip is not None:
             amiem_url = "http://" + self.isy_ip + "/rest/emeter"
@@ -62,72 +62,54 @@ class Controller(polyinterface.Controller):
             prevs_count = 0
             sumss_count = 0
 
-            amiem_resp = self.get_request(amiem_url)
-            if amiem_resp is not None:
-                amiem_root = ET.fromstring(amiem_resp)
-                for amie in amiem_root.iter('instantaneousDemand'):
-                    amiem_count = float(amie.text)/1000
-                    
+        amiem_resp = self.get_request(amiem_url)
+        if amiem_resp is not None:
+            amiem_root = ET.fromstring(amiem_resp)
+            for amie in amiem_root.iter('instantaneousDemand'):
+                amiem_count = float(amie.text)
+        
+        amiem1_resp = self.get_request(amiem_url)
+        if amiem1_resp is not None:
+            amiem1_root = ET.fromstring(amiem1_resp)
+            for amie1 in amiem1_root.iter('instantaneousDemand'):
+                amiem_count1 = float(amie1.text)        
 
-            amiem1_resp = self.get_request(amiem_url)
-            if amiem1_resp is not None:
-                amiem1_root = ET.fromstring(amiem1_resp)
-                for amie1 in amiem1_root.iter('instantaneousDemand'):
-                    amiem_count1 = float(amie1.text)        
-                
+        ustdy_resp = self.get_request(amiem_url) #Current Daily Delivery
+        if ustdy_resp is not None:
+            ustdy_root = ET.fromstring(ustdy_resp)
+            for ustd in ustdy_root.iter('currDayDelivered'):
+                ustdy_count = float(ustd.text)
 
-            ustdy_resp = self.get_request(amiem_url) #Current Daily Delivery
-            if ustdy_resp is not None:
-                ustdy_root = ET.fromstring(ustdy_resp)
-                for ustd in ustdy_root.iter('currDayDelivered'):
-                    ustdy_count = float(ustd.text)/1000
+        prevs_resp = self.get_request(amiem_url) #Previous Day Delivered
+        if prevs_resp is not None:
+            prevs_root = ET.fromstring(prevs_resp)
+            for prev in prevs_root.iter('previousDayDelivered'):
+                prevs_count = float(prev.text)     
 
-            prevs_resp = self.get_request(amiem_url) #Previous Day Delivered
-            if prevs_resp is not None:
-                prevs_root = ET.fromstring(prevs_resp)
-                for prev in prevs_root.iter('previousDayDelivered'):
-                    prevs_count = float(prev.text)/1000     
-
-
-            sumss_resp = self.get_request(amiem_url) #Previous Day Delivered
-            if sumss_resp is not None:
-                sumss_root = ET.fromstring(sumss_resp)
-                for sums in sumss_root.iter('currSumDelivered'):
-                    sumss_count = float(sums.text)/1000     
+        sumss_resp = self.get_request(amiem_url) #Previous Day Delivered
+        if sumss_resp is not None:
+            sumss_root = ET.fromstring(sumss_resp)
+            for sums in sumss_root.iter('currSumDelivered'):
+                sumss_count = float(sums.text)     
             
             
-            if self.debug_enable == 'True' or self.debug_enable == 'true':
-                LOGGER.info("kW: " + str(amiem_count))
-                LOGGER.info("WATTS: " + str(amiem_count1))
-                LOGGER.info("kWh: " + str(ustdy_count))
-                LOGGER.info("kWh: " + str(prevs_count))
-                LOGGER.info("kWh: " + str(sumss_count))
+        if self.debug_enable == 'True' or self.debug_enable == 'true':
+            LOGGER.info("kW: " + str(amiem_count/float(self.nem_oncor)))
+            LOGGER.info("WATTS: " + str(amiem_count1))
+            LOGGER.info("kWh: " + str(ustdy_count))
+            LOGGER.info("kWh: " + str(prevs_count))
+            LOGGER.info("kWh: " + str(sumss_count))
 
             self.setDriver('GPV', 1)
-            self.setDriver('CC', amiem_count, force=True)
-            self.setDriver('GV1', amiem_count1, force=True)
-            self.setDriver('TPW', ustdy_count, force=True)
-            self.setDriver('GV2', prevs_count, force=True)
-            self.setDriver('GV3', sumss_count, force=True)
-        else:
-            LOGGER.info("ISY IP is not configured")
-
-    def setPerkW(self, command):
-        cov_one = 'covt'
-        covt = int(command.get('value'))
-        def set_covt(self, command):
-            covt = (command.get('value'))
-        if covt < 100 or covt > 10000:
-            LOGGER.error('Invalid Setpoint {}'.format(covt))
-        else:
-            self.setDriver('GV12', covt)
-            LOGGER.info('Divisor = ' + str(covt) +  '  Divisor') 
-        if covt is not None:
-            covt_root = ET.formatstring(covt)
-            for sums in covt_root.iter('covtSum'):
-                covt_sum = float(sum.int)/100
-            LOGGER.info(covt_sum)        
-
+            self.setDriver('CC', amiem_count/float(self.nem_oncor))
+            self.setDriver('GV1', amiem_count1/float(self.nem_oncor)*1000)
+            self.setDriver('TPW', ustdy_count/float(self.nem_oncor))
+            self.setDriver('GV2', prevs_count/float(self.nem_oncor))
+            self.setDriver('GV3', sumss_count/float(self.nem_oncor))
+        #return
+        #else:
+        #    LOGGER.info("ISY IP is not configured")
+    
     def delete(self):
         LOGGER.info('Removing AMI-NEM Meter')
 
@@ -158,6 +140,7 @@ class Controller(polyinterface.Controller):
         default_user = "YourUserName"
         default_password = "YourPassword"
         default_isy_ip = "127.0.0.1"
+        default_nem_oncor = "1000"
 
         if 'user' in self.polyConfig['customParams']:
             self.user = self.polyConfig['customParams']['user']
@@ -181,16 +164,24 @@ class Controller(polyinterface.Controller):
             LOGGER.error(
                 'check_params: ISY IP not defined in customParams, please add it.  Using {}'.format(self.isy_ip))
             st = False
+        
+        if 'nem_oncor' in self.polyConfig['customParams']:
+            self.nem_oncor = self.polyConfig['customParams']['nem_oncor']
+        else:
+            self.nem_oncor = default_nem_oncor
+            LOGGER.error(
+                'check_params: ISY IP not defined in customParams, please add it.  Using {}'.format(self.nem_oncor))
+            st = False
 
         if 'debug_enable' in self.polyConfig['customParams']:
             self.debug_enable = self.polyConfig['customParams']['debug_enable']
 
         # Make sure they are in the params
         self.addCustomParam({'password': self.password, 'user': self.user,
-                             'isy_ip': self.isy_ip, 'debug_enable': self.debug_enable})
+                             'isy_ip': self.isy_ip, 'nem_oncor': self.nem_oncor, 'debug_enable': self.debug_enable})
 
         # Add a notice if they need to change the user/password from the default.
-        if self.user == default_user or self.password == default_password or self.isy_ip == default_isy_ip:
+        if self.user == default_user or self.password == default_password or self.isy_ip == default_isy_ip: #or self.nem_oncor == default_nem_oncor
             self.addNotice('Please set proper user, password and ISY IP '
                            'in configuration page, and restart this nodeserver')
             st = False
@@ -212,7 +203,7 @@ class Controller(polyinterface.Controller):
 
     id = 'controller'
     commands = {
-        'COVT': setPerkW,
+        #'COVT': setPerkW,
         'QUERY': query,
         'DISCOVER': discover,
         'UPDATE_PROFILE': update_profile,
