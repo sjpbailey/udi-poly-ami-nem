@@ -9,12 +9,12 @@
     "shortPoll": "240",
     "longPoll": "86400",
     "testMode": false,
-    "profile_version": "1.0.9",
+    "profile_version": "1.1.0",
     "credits": [
         {
             "title": "AMI-NEM: AMI-NEM Meter",
             "author": "SJBailey",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "date": "December 16, 2019",
             "source": "https://github.com/sjpbailey/udi-poly-ami-nem",
             "license": "https://github.com/sjpbailey/udi-poly-ami-nem/blob/master/LICENSE"

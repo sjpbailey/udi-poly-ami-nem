@@ -99,17 +99,17 @@ class Controller(polyinterface.Controller):
             LOGGER.info("kWh: " + str(ustdy_count))
             LOGGER.info("kWh: " + str(prevs_count))
             LOGGER.info("kWh: " + str(sumss_count))
-
-            self.setDriver('GPV', 1)
+            # Set Drivers
             self.setDriver('CC', amiem_count/float(self.nem_oncor))
             self.setDriver('GV1', amiem_count1/float(self.nem_oncor)*1000)
             self.setDriver('TPW', ustdy_count/float(self.nem_oncor))
             self.setDriver('GV2', prevs_count/float(self.nem_oncor))
             self.setDriver('GV3', sumss_count/float(self.nem_oncor))
-        #return
-        #else:
-        #    LOGGER.info("ISY IP is not configured")
-    
+        
+        if amiem_count is not None:
+            self.setDriver('GPV', 1)
+        pass
+        
     def delete(self):
         LOGGER.info('Removing AMI-NEM Meter')
 
@@ -209,7 +209,7 @@ class Controller(polyinterface.Controller):
         'UPDATE_PROFILE': update_profile,
     }
     drivers = [
-                {'driver': 'GPV', 'value': 1, 'uom': 2},
+                {'driver': 'GPV', 'value': 0, 'uom': 2},
                 {'driver': 'CC', 'value': 1, 'uom': 30},
                 {'driver': 'GV1', 'value': 1, 'uom': 73},
                 {'driver': 'TPW', 'value': 1, 'uom': 33},
